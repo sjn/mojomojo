@@ -75,6 +75,9 @@ div#toplinks ul li a,  div#bottomnav ul li a {
     color: #1e1e1e;
     text-decoration: none;
 }
+div#toplinks form {
+    float: right;
+}
 div#pagenav {
     font-size: .9em;
     text-align: left;
@@ -497,7 +500,7 @@ a.logo {
 /* header
 --------------------------------------- */
 
-#header-cat {
+/* #header-kaizendo {
     height: 123px;
     background: url("images/layout/header_bg_catalyst.png") no-repeat;
     border: solid 1px rgb(255,255,255);
@@ -549,6 +552,8 @@ a.logo {
     visibility: hidden;
     position: absolute;
 }
+
+--------------------------------------- */
 
 /* menu_global
 --------------------------------------- */

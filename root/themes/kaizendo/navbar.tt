@@ -1,14 +1,14 @@
 <div id="toplinks">
   [% IF c.pref('disable_search') +%]
-    <form action="http://google.com/search" method="get">
+    <!-- form action="http://google.com/search" method="get">
         <input type="hidden" name="q" value="site:[% c.req.base.replace('https?://') | html %]" />
   [% ELSE +%]
-    <form action="[% c.uri_for('search') %]" method="get">
+    <!-- form action="[% c.uri_for('search') %]" method="get">
   [% END +%]
         [% UNLESS c.pref('disable_search') +%]<input type="hidden" name="search_type" value="all" />[% END +%]
         <input type="text" id="searchField" name="q" value="[% loc('Search') %]"/>
         <input type="submit" value="[% loc('Search') %]"/>
-    </form>
+    </form -->
         [% FILTER nav %]
         <ul>
             <li><a href="[% c.uri_for('/.recent') %]" title="[% loc('Pages sorted by when they were last changed') %]" accesskey="U">[% loc('Recent') %]</a></li>
