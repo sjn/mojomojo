@@ -1,3 +1,20 @@
-<div id="head">
-<h1><a href="/">[% c.pref('name') %]</a></h1>
-</div>
+	<div id="header-cat">
+		<h1>
+		</h1>
+		<!--
+		<form method="get" action="/search" id="form">
+			<div>
+				<input class="text" type="text" id="query" name="query" value="" /><br />
+				<input class="submit" type="submit" id="search" value="Search" />
+			</div>
+		</form>
+		//-->
+		<ul id="menu_global">
+			<li id="about"><span><a href="/">About</a></span></li>
+			<li id="contribute"><span><a href="/contribute">Contribute</a></span></li>
+
+		</ul>
+
+[%template.title%]
+
+	</div><!-- end #header-cat -->

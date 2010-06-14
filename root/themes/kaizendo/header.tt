@@ -8,16 +8,16 @@
                 - [% c.pref('name') %]
     </title>
     [% UNLESS index_page %]<meta name="robots" content="noindex" />[% END %]
+    [% my_theme_dir = (c.pref('theme') ) %]
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="powered by" content="MojoMojo [%c.VERSION%]" />
     <link href="[% c.uri_for_static('css/jquery.autocomplete.css')%]" type="text/css" rel="stylesheet" />
     <link rel="alternate" type="application/atom+xml" title="Atom" href="[%c.uri_for('atom')%]" />
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0 Headlines" href="[%c.uri_for('rss')%]" />
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0 Full" href="[%c.uri_for('rss_full')%]" />
-    <link rel="shortcut icon" href="[%c.uri_for_static('themes/madrid-pm/favicon.ico')%]" />
+    <link rel="shortcut icon" href="[%c.uri_for_static('themes/' _ my_theme_dir _ '/favicon.ico')%]" />
     <style type="text/css">
-        [% my_theme_dir = (c.pref('theme') ) %]
-        [% theme_path = 'themes/' _ my_theme_dir _ '/theme.css' %]
+        [%theme_path = 'themes/' _ my_theme_dir _ '/theme.css'%]
         @import "[% c.uri_for_static('mojomojo.css') %]";
         @import "[% c.uri_for_static(theme_path) %]";
         @import "[% c.uri_for_static('pod.css') %]";
