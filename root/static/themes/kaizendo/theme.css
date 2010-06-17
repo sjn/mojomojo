@@ -1,28 +1,48 @@
-#container {
-    max-width: 960px;
+/* @override http://localhost:3000/.static/themes/default/theme.css */
+
+/* @group Document Structure */
+
+body {
+    background: #3d743a repeat-x url(images/background.jpg);
+    margin: 0;
+    color: #20471e;
+    font-size: 0.9em;
+    font-family: Helvetica Neue,Arial, Helvetica, Geneva, sans-serif;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
     text-align: left;
     margin: 0 auto 0;
 }
 
-#header {
-    float: right;
-    text-align: right;
-    height: auto;
-    padding-bottom: 2em;
-    margin: 2px 0 0 0;
-    position: absolute;
-    top: 0px;
-    width: 858px;
+.maximized-container {
+    max-width: 99%;
+    width: 99%;
 }
 
+#header {
+    height: auto;
+    padding-bottom: 0.1em;
+    margin: 0;
+    margin-top: 10px;
+    background-color: #99cc99;
+    -moz-border-radius-topleft: 25px;
+    -webkit-border-top-left-radius: 25px;
+    -moz-border-radius-topright: 25px;
+    -webkit-border-top-right-radius: 25px;
+}
 
 #header h1 {
-    font-size: 1.8em;
-    font-family: Verdana;
-    color: #656060;
+    background: url(images/Kaizendo-tinyk-1.3.png) no-repeat 5px 5px;
+    top: 14px;
+    padding: 13px 0 10px 100px;
+    color: #ffffff;
+    font-weight: bold;
     border-width: 1px;
     border-color: #000;
-    margin: 0.4em;
+    margin: 0;
 }
 
 #header h1 a {
@@ -30,62 +50,64 @@
 }
 
 #breadcrumbs {
-    background: #ffffff;
+    background: #274727;
     height: 12px;
     font-size: .9em;
-    color: #303030;
-    text-align: left;
+    color: #e3e3e3;
     margin: 0;
     padding: 6px 8px;
 }
 #breadcrumbs a {
-    padding: 1px 6px;
-    color: #404040;
+    padding: 2px 7px;
+    color: white;
     text-decoration: none;
 }
 #breadcrumbs a:hover {
-    color: #000;
-    background-color: #c1baaa;
+    color: #ffffff;
+    background-color: #365c33;
     text-decoration: none;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-right-radius: 5px;
 }
 
 div#toplinks {
     font-size:.9em;
-    background: #ccc;
+    background: #e7ebe7;
     font-weight: bold;
-    color: #1E1E1E;
-    padding: 2px 8px;
+    color: #000000;
+    padding: 4px 8px;
     min-height: 1.8em;
-    text-align: left;
 }
 div#toplinks ul li, div#bottomnav ul li {
-    display: inline;
+    display: block;
+    float: left;
+    height: 1.5em;
+}
+div#toplinks ul li a, div#bottomnav ul li a, div#bottomnav ul li span.title {
+    text-decoration:none;
+    margin: 0px 0 0 5px;
+    padding: 1px 2px;
+}
+div#toplinks ul li a {
+    padding: 4px;
 }
 div#toplinks ul li a:hover, div#bottomnav ul li a:hover {
     background-color: #fff;
-    color: #1e1e1e;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    text-decoration:none;
+    color:#333;
 }
-div#toplinks ul li a,  div#bottomnav ul li a {
-    padding: 2px 6px;
-    color: #1e1e1e;
-    text-decoration: none;
-}
-div#toplinks form {
-    float: right;
+div#toplinks a {
+    position: relative;
+    top: 4px;
 }
 div#pagenav {
     font-size: .9em;
-    text-align: left;
     clear: both;
     padding: 4px 15px;
-    background: #eee;
-    border-top: 1px solid #c1baaa;
-    border-bottom: 1px solid #c1baaa;
+    background: #f6f6f6;
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
 }
 div#pagenav ul li {
     padding: 2px 14px 2px 0;
@@ -99,7 +121,7 @@ div#pagenav ul li a:hover {
 }
 div#pageoptions {
     padding: 5px 14px;
-    background-color: #dedede;
+    background-color: #ceebb6;
 }
 div#pageoptions ul li {
     display: inline;
@@ -108,7 +130,12 @@ div#pageoptions ul li {
     font-size: 1.1em;
 }
 div#pageoptions a {
-    color: darkred;
+    color: green;
+
+}
+div#pageoptions a.active {
+    color: #ceebb6;
+    background: green;
 }
 #categories {
     background: #ffffff;
@@ -127,12 +154,12 @@ div#pageoptions a {
 .wantedBy { color:#999; }
 
 #tags {
-    background: #eee;
+    background: #f6f6f6;
     font-size: 1.1em;
     color: #676767;
     padding: 5px 13px;
-    border-top: 1px solid #c1baaa;
-    border-bottom: 1px solid #c1baaa;
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
 }
 
 .showdiv {
@@ -144,84 +171,15 @@ div#pageoptions a {
     font-weight: bold;
 }
 
-/*------------ Content ------------*/
-
 #content {
-  overflow: hidden;
+    overflow: auto;  /* wide unwrappable content needs to be visible; see test at http://wiki.dandascalescu.com/reviews/food/vitamins */
     background: #ffffff;
-    padding: 13px;
-    overflow: hidden;
-}
-
-#content h1 {
-    font-size: 2.4em;
-    font-family: Georgia, Verdana;
-}
-
-#content h2 {
-    /*color: #58181B;*/
-    font-weight: normal;
-    font-size: 1.9em;
-    font-family: Georgia, Verdana;
-    border-bottom:1px solid #AAAAAA;
-    color:#AF261E;
-/*    border-bottom:1px solid #D8DFEA;
-    margin:-4px 0 0;
-    z-index:0;
-*/}
-
-#content h3 {
-    font-weight: bold;
-    font-size: 1.4em;
-    font-family: Georgia, Verdana;
-}
-
-#content h4 {
-    font-weight: bold;
-    font-size: 1.2em;
-    font-family: Georgia, Verdana;
-}
-
-#content h5 {
-    font-weight: bold;
-    font-variant: small-caps;
-    font-size: 1.2em;
-    font-family: Georgia, Verdana;
-}
-
-#content h6 {
-    font-weight: bold;
-    font-size: 1.1em;
-    font-variant: small-caps;
-    font-family: Georgia, Verdana;
-}
-
-#content .sideline {
-    border-bottom:1px solid #DDDDDD;
-    font-family:"Trebuchet MS","Lucida Grande","Lucida Sans",Verdana,Arial,sans-serif;
-    font-size:1.4em;
-    font-weight:normal;
-    letter-spacing:1.2pt;
-    padding:25px 0 3px;
-    text-decoration: uppercase;
-}
-
-/* --------- Links -------- */
-
-#content a {
-    color: #2274A8;
-    text-decoration: none;
-}
-
-#content a:hover {
-    color: #336699;
-    text-decoration: underline;
+    padding: 2em 13px;
 }
 
 #content strong,b {
     font-weight: bold;
 }
-
 #content em,i {
     font-style: italic;
 }
@@ -229,16 +187,22 @@ div#pageoptions a {
 #content ul, #content ol {
     padding-left:1.5em;
 }
-
+/* For IE6, which doesn't support child selectors */
 #content ul li {
     list-style: square;
 }
-
+/* this means that the last li in `ol li ul li` will end up with list-style: decimal instead of 'square' */
 #content ol li {
     list-style: decimal;
 }
-
-#content li{
+/* The two direct child selectors below take care of that nesting problem, but only for Standards-Compliant Browsers */
+#content ul > li {
+    list-style: square;
+}
+#content ol > li {
+    list-style: decimal;
+}
+#content li {
     margin-left: 1.5em;
     margin-bottom:5px;
 }
@@ -259,7 +223,7 @@ div#pageoptions a {
 
 #content table thead th, #content table tfoot th {
     font-weight: bold;
-    background: #f6f6f6;
+    background:#f6f6f6;
 }
 
 #content table tbody th, #content table tbody td {
@@ -276,22 +240,22 @@ div#pageoptions a {
 }
 
 #bottomnav {
-    background: #ccc;
+    background: #e7ebe7;
     padding: 6px 8px;
     color: #000000;
     margin: 0;
     font-weight: bold;
-    min-height: 1.8em;
+    height: 2.8em;
     font-size: 0.9em;
+    border-top: 1px solid #88aa88;
 }
 
 #bottomnav input {
     font-size: 1em;
 }
 
-#lang {
-    background: #ccc;
-    padding: 0.4em;
+li#site_settings {
+    clear: left;
 }
 
 .formdiv {
@@ -320,332 +284,29 @@ p {
     text-align: center;
 }
 
-/* @end */
-
-.newWikiWord {
-    background: #FFFFFF none repeat scroll 0 0;
-    color:#EE3333;
+#powered {
+    border-top: 2px solid #335c33;
+    width: 100%;
+    margin: 0;
+    padding: 1em 0;
+    text-align: right;
 }
 
-#content .newWikiWord a {
-    background:#FFFFFF none repeat scroll 0 0;
-    color:#EE3333;
-}
-
-textarea#body {
-    height: 28em;
+#content .syntax_help table {
     width: 100%;
 }
-
-/* -------------------- Generic ----------------------------- */
-
-body {
-    text-align: left;
+#content .syntax_help table th,
+#content .syntax_help table td {
+    padding: 0.2em;
 }
 
-body {
-    font-family: verdana, sans-serif;
-    font-size: .8em;
-    background: rgb(234,234,234) url("images/layout/body_bg.png") center repeat-y;
-    margin: 0;
-    color: rgb(30,30,30);
+#path_links, #path_links li {
+    margin-left: 0;
+    padding-left: 0;
 }
 
-a {
-  /*color: rgb(0,51,204);*/
-  /* color: #336699; */
-    color: #c1baaa;
-    text-decoration: none;
+.syntax_help table th {
+    background-color: #f6f6f6;
 }
 
-a:link {
-    color: #336699;
-}
-
-a:visited {
-    text-decoration: none;
-    /*color: rgb(68,68,68);*/
-}
-
-a:hover {
-    color: rgb(0,0,0);
-    text-decoration: underline;
-}
-
-img {
-    border: none;
-}
-
-p {
-    margin-top: 0;
-}
-
-h1 a, h2 a, h3 a,
-h1 a:visited, h2 a:visited, h3 a:visited {
-    color: rgb(153,153,153);
-}
-
-h1 a:hover,
-h2 a:hover,
-h3 a:hover {
-    color: rgb(0,0,0);
-}
-
-hr {
-    height: 1px;
-    border-top: solid rgb(220,220,220);
-    border-bottom: solid rgb(255,255,255);
-    border-width: 1px 0 0 0;
-}
-
-table {
-    border-collapse: collapse;
-}
-
-th {
-    text-align: left;
-}
-
-ul {
-    padding: 0;
-    margin: 0;
-}
-
-.content ul li {
-    list-style-type: none;
-    padding-left: 1.5em;
-    background: url("images/global/list_bullet.png") top left no-repeat;
-    background-position: .55em .55em;
-}
-
-
-/* Generic content classes
---------------------------------------- */
-
-.hidden {
-    clear: both;
-    visibility: hidden;
-}
-
-h2.icon_control {
-    background: url("images/global/icon_control.png") top left no-repeat;
-}
-
-h2.icon_model {
-    background: url("images/global/icon_model.png") top left no-repeat;
-}
-
-h2.icon_view {
-    background: url("images/global/icon_view.png") top left no-repeat;
-}
-
-h2.icon_control,
-h2.icon_model,
-h2.icon_view {
-    margin-top: 1.2em;
-    margin-bottom: .2em;
-    padding: 15px 0 8px 55px;
-    background-position: 0 5px;
-}
-
-
-/* ----------------------- Planet -------------------------------- */
-
-
-/*+-------------------------------------------+
-  | GENERAL                                   |
-  +-------------------------------------------+*/
-
-#content {
-    background: #fff;
-    margin-top: 7px;
-}
-
-#main {
-    float: left;
-    width: 640px;
-    margin-left: 10px;
-    background: #fff;
-    padding: 1px;
-}
-
-#sidebar {
-    margin-left: 585px;
-    padding: 1px 15px 0 0;
-}
-
-/*+-------------------------------------------+
-  | LOGO                                      |
-  +-------------------------------------------+*/
-
-a.logo {
-    text-decoration: none;
-}
-
-
-/* ------------------------- Layout --------------------------- */
-
-
-@import "../department/home.html";
-
-#container {
-    width: 860px;
-    margin-left: auto;
-    margin-right: auto;
-}
-#maximize {
-    display: none;
-}
-
-/* header
---------------------------------------- */
-
-/* #header-kaizendo {
-    height: 123px;
-    background: url("images/layout/header_bg_catalyst.png") no-repeat;
-    border: solid 1px rgb(255,255,255);
-    border-bottom: solid 1px rgb(238,238,238);
-}
-
-.control #header-cat {
-    background: url("images/layout/header_bg_control.png") no-repeat;
-}
-
-.documentation #header-cat {
-    background: url("images/layout/header_bg_documentation.png") no-repeat;
-}
-
-.model #header-cat {
-    background: url("images/layout/header_bg_model.png") no-repeat;
-}
-
-.view #header-cat {
-    background: url("images/layout/header_bg_view.png") no-repeat;
-}
-
-#header-cat h1 {
-    position: relative;
-    top: 15px;
-    left: 20px;
-    margin: 0;
-    width: 170px;
-    height: 58px;
-    background: url("images/layout/catalyst_170pix.png");
-}
-
-#header-cat h1 a {
-    display: block;
-    width: 170px;
-    height: 58px;
-}
-
-#header-cat h1 img {
-    visibility: hidden;
-}
-
-#header-cat form {
-    float: right;
-    margin: -30px 20px 0 0;
-}
-
-#header-cat .submit {
-    visibility: hidden;
-    position: absolute;
-}
-
---------------------------------------- */
-
-/* menu_global
---------------------------------------- */
-
-#menu_global {
-    position: relative;
-    top: 38px;
-    left: 10px;
-    float: left;
-    padding: 0;
-    margin: 0;
-}
-
-#menu_global li,
-#menu_global li a {
-    display: block;
-    list-style-type: none;
-}
-
-#menu_global li {
-    float: left;
-    height: 29px;
-    margin-right: 2px;
-}
-
-#menu_global a {
-    padding: 8px 10px 5px 10px;
-    text-decoration: none;
-    color: rgb(85,85,85);
-}
-
-#menu_global li a:hover {
-    color: rgb(0,0,0);
-}
-
-#menu_global #home,
-.community #menu_global #community,
-.documentation #menu_global #documentation,
-.developer #menu_global #developer,
-.download #menu_global #download,
-.support #menu_global #support {
-    background: rgb(255,255,255) url("images/layout/menu_global_bg_left.png") top left no-repeat;
-}
-
-
-/* main
---------------------------------------- */
-
-#main {
-  /*border-top: solid 1px rgb(220,220,220);*/
-    padding: 0 20px 0 20px;
-}
-
-/* content
---------------------------------------- */
-
-.content {
-    float: left;
-    width: 540px;
-}
-
-.fullwidth {
-    width: 800px;
-}
-
-/* catch
---------------------------------------- */
-
-.catch {
-    height: 258px;
-    width: 480px;
-    margin-bottom: 10px;
-    padding: 20px 320px 20px 20px;
-    color: rgb(51,51,51);
-    font-size: 1.3em;
-}
-
-.catch h1 {
-    margin-top: .5em;
-    font-family: verdana, sans-serif;
-    color: rgb(30,30,30);
-}
-
-/* footer
---------------------------------------- */
-
-#footer {
-    height: 30px;
-    margin: 0 20px 10px 20px;
-    padding: 10px 0 0 0;
-    clear: both;
-    border-top: solid 1px rgb(220,220,220);
-    color: rgb(153,153,153);
-    font-size: x-small;
-}
+/* @end */
