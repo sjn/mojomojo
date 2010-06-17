@@ -5,7 +5,7 @@
 body {
     background: #3d743a repeat-x url(images/background.jpg);
     margin: 0;
-    color: #20471e;
+    color: #000; /* #20471e */
     font-size: 0.9em;
     font-family: Helvetica Neue,Arial, Helvetica, Geneva, sans-serif;
     text-align: center;
