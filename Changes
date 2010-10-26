@@ -1,6 +1,16 @@
 
   Bug fixes: 
   - Fix tagged descendants by date for postgresql
+  - Fix root setting to actually be used.
+
+  Improvements:
+  - Use precompiled content when building search results
+    when precompiled is non-empty.  This speeds up search results 
+    a butt-load and then some.  Thanks to <sauber> and <Khisanth>.
+    
+  Migration:
+ - Moved to using KinoSearch1 instead of KinoSearch.  The former has 
+   replaced the latter.
 
 1.01 2010-05-26 10:04:20
   New features:
