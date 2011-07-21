@@ -1,16 +1,27 @@
+  Bug fixes:
+  - Check input for gallery pages (be numeric) and jsrpc/diff (page must exist). Fixes issue #83.  (dandv)
+  - Ensure all 'jsrpc/diff' links have rel=nofollow. Avoid bogus search engine indexing.  (dandv)
+  - Allow only logged-in users to export. Alleviates issue #39.  (dandv)
+  - Prevent actions from being run on non-existent pages (e.g. '/bogus.export').
+    '.edit' is allowed, to create the page. Fixes issues #36 and #80.  (dandv)
+
+
+1.04  2011-02-12 10:24
   Improvements:
   - Don't save a page when there is no change even if we push the save button.
     This prevents the revision number from being incremented.
+  - Added gist formatter (bayashi)
   
-  Fixes:
-  - Amazon requires a secret key now to access it's API.
+  Bug fixes:
+  - Amazon requires a secret key now to access its API.
     Make the Amazon formatter aware of that.
-  - Google calendar formatter was setting precomple_off = 1 always 
+  - Google calendar formatter was always setting precompile_off = 1
     (even when it wasn't a calendar page).
 
+    
 1.03  2011-01-12 11:36
   New features:
-  - Google Calendar formatter
+  - Google Calendar formatter (jcockhren)
 
   Bug fixes:
   - Really fix tagged descendants by date for postgres
@@ -33,9 +44,10 @@
     a butt-load and then some.  Thanks to <sauber> and <Khisanth>.
     
   Migration:
- - Moved to using KinoSearch1 instead of KinoSearch.  The former has 
-   replaced the latter.
+  - Moved to using KinoSearch1 instead of KinoSearch.  The former has
+    replaced the latter.
 
+   
 1.01 2010-05-26 10:04:20
   New features:
   - Google search formatter (bayashi)
@@ -51,6 +63,7 @@
   - All Methods/subs now documented
   - POD Coverage test on by default
 
+  
 1.00 2010-05-09 00:04:20
 
   New Features:
@@ -61,9 +74,9 @@
   - Fix WantedLink to use normalize_page to match links
   - Removed File::Slurp dependency after removing it from Text::(Multi)Markdown
     because it fails installation under Strawberry Perl  (dandv)
-  - IRC Formatter auto-color nicknames (GitHub issue #27) (linio) 
-  - Attachments size in Page info is now correctly displayed (GitHub issue #53) (linio)
-  - Remove 'Alerts' from Syntax Highlight list - it's Kate's hidden module (Github issue #52) (linio)
+  - IRC Formatter auto-color nicknames (issue #27) (linio)  [his last commit, RIP now]
+  - Attachments size in Page info is now correctly displayed (issue #53) (linio)
+  - Remove 'Alerts' from Syntax Highlight list - it's Kate's hidden module (issue #52) (linio)
   - Fixed formatter_all_textile tests to work without Syntax plugin
   
   Improvements:

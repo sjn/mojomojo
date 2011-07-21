@@ -60,7 +60,7 @@ sub view : Global {
     return $c->forward('suggest')
       if $proto_pages && @$proto_pages;
 
-    my $page = $stash->{'page'};
+    my $page = $stash->{page};
 
     return unless $c->check_view_permission;
 
@@ -162,7 +162,7 @@ sub search : Global {
         if ( $c->pref('check_permission_on_view') ) {
             if ( $c->user_exists() ) { $user = $c->user->obj; }
             my $perms = $c->check_permissions( $page->path, $user );
-            next unless $perms->{'view'};
+            next unless $perms->{view};
         }
 
         # add a snippet of text containing the search query
@@ -193,7 +193,7 @@ sub search : Global {
     # Order hits by score.
     my @results;
     foreach my $hit_path (
-        sort { $results_hash{$b}->{'score'} <=> $results_hash{$a}->{'score'} }
+        sort { $results_hash{$b}->{score} <=> $results_hash{$a}->{score} }
         keys %results_hash
       )
     {
@@ -446,12 +446,18 @@ Page showing available export options.
 
 sub export : Global {
     my ( $self, $c ) = @_;
+    if ( !$c->user_exists() ) {
+        $c->stash->{message} = $c->loc('To export, you must be logged in');
+        $c->detach('MojoMojo::Controller::PageAdmin', 'unauthorized');
+    }
+    
     $c->stash->{template} = 'export.tt';
 }
 
 =head2 suggest (.suggest)
 
 "Page not found" page, suggesting alternatives, and allowing creation of the page.
+Root::auto detaches here for actions on nonexistent pages (e.g. c<bogus.export>).
 
 =cut
 
@@ -459,6 +465,8 @@ sub suggest : Global {
     my ( $self, $c ) = @_;
     $c->stash->{template} = 'page/suggest.tt';
     $c->res->status(404);
+    # force the Catalyst flow to jump straight to the most specific 'end' action, which is Root::end
+    return 0;  # otherwise, when Root::auto detaches here, we'd call the original action (e.g. 'export') too
 }
 
 =head2 search_inline (.search/inline)
