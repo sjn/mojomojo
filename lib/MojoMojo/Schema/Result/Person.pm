@@ -3,7 +3,7 @@ package MojoMojo::Schema::Result::Person;
 use strict;
 use warnings;
 
-use Digest::SHA1;
+use Digest::SHA;
 
 use parent qw/MojoMojo::Schema::Base::Result/;
 
@@ -21,13 +21,18 @@ __PACKAGE__->add_columns(
         size              => undef,
         is_auto_increment => 1
     },
+    
     "active",
+    # -1 = user registered but hasn't confirmed e-mail address yet;
+    # 0 = manually set to inactive from Site Settings -> Users;
+    # 1 = active user
     {
         data_type     => "INTEGER",
         is_nullable   => 0,
         default_value => -1,
         size          => undef
     },
+    
     "registered",
 
 #   { data_type => "BIGINT", is_nullable => 0, size => undef, epoch => 'ctime' },
@@ -217,13 +222,13 @@ sub valid_pass {
 
 =head2 hashed
 
-Apply a sha1 hash to the inpout string.
+Apply a SHA1 hash to the input string.
 
 =cut
 
 sub hashed {
     my ( $self, $secret ) = @_;
-    return Digest::SHA1::sha1_hex( $self->id . $secret );
+    return Digest::SHA::sha1_hex( $self->id . $secret );
 }
 
 # FIXME: the formatter is arbitrarily taken to be Textile; it could be MultiMarkdown
@@ -246,7 +251,7 @@ sub music_formatted     { $textile->process( shift->music ); }
 
 =head2 movies_formatted
 
-Format a person's movies tastes.
+Format a person's movie tastes.
 
 =cut
 

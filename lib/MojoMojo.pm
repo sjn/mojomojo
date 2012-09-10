@@ -20,6 +20,7 @@ use Catalyst qw/
 use Storable;
 use Digest::MD5;
 use Data::Dumper;
+use DateTime;
 use MRO::Compat;
 use DBIx::Class::ResultClass::HashRefInflator;
 use Encode ();
@@ -30,7 +31,7 @@ use Module::Pluggable::Ordered
     except      => qr/^MojoMojo::Plugin::/,
     require     => 1;
 
-our $VERSION = '1.04';
+our $VERSION = '1.06';
 use 5.008004;
 
 MojoMojo->config->{authentication}{dbic} = {
@@ -100,7 +101,7 @@ MojoMojo->model('DBIC')->schema->attachment_dir( MojoMojo->config->{attachment_d
 
 =head1 NAME
 
-MojoMojo - A Catalyst & DBIx::Class powered Wiki.
+MojoMojo - A Wiki with a tree
 
 =head1 SYNOPSIS
 
@@ -120,16 +121,16 @@ MojoMojo - A Catalyst & DBIx::Class powered Wiki.
 
 =head1 DESCRIPTION
 
-Mojomojo is a sort of content management system, borrowing many concepts from
+Mojomojo is a content management system, borrowing many concepts from
 wikis and blogs. It allows you to maintain a full tree-structure of pages,
 and to interlink them in various ways. It has full version support, so you can
 always go back to a previous version and see what's changed with an easy diff
-system. There are also a bunch of other features like live AJAX preview while
-editing, page tags, built-in fulltext search, image galleries, and RSS feeds
+system. There are also a some of useful features like live AJAX preview while
+editing, tagging, built-in fulltext search, image galleries, and RSS feeds
 for every wiki page.
 
 To find out more about how you can use MojoMojo, please visit
-http://mojomojo.org or read the installation instructions in
+L<http://mojomojo.org/> or read the installation instructions in
 L<MojoMojo::Installation> to try it out yourself.
 
 =head1 METHODS
@@ -290,6 +291,20 @@ sub fixw {
     $w =~ s/\s/\_/g;
     $w =~ s/[^\w\/\.]//g;
     return $w;
+}
+
+=head2 tz
+
+Convert timezone
+
+=cut
+
+sub tz {
+    my ( $c, $dt ) = @_;
+    if ( $c->user && $c->user->timezone ) {
+        eval { $dt->set_time_zone( $c->user->timezone ) };
+    }
+    return $dt;
 }
 
 =head2 prepare_action

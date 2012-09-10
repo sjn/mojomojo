@@ -14,7 +14,7 @@ requires(
     'Algorithm::Merge'             => 0,
     'Archive::Zip'                 => '1.14',
     'Cache::FastMmap'              => 1.31,        # deleted /tmp/sharefile-* when MM is killed
-    'Catalyst'                     => '5.71001',
+    'Catalyst'                     => '5.90015',
     'Catalyst::Action::RenderView' => '0.07',
     'Catalyst::Authentication::Store::DBIx::Class' => '0.101',
     'Catalyst::Controller::HTML::FormFu'           => '0.03007',
@@ -24,7 +24,7 @@ requires(
     'Catalyst::Plugin::Cache'                      => 0.08,
     'Catalyst::Plugin::ConfigLoader'               => '0.13',
     'Catalyst::Plugin::I18N'                       => 0,
-    'Catalyst::Plugin::SubRequest'                 => '0.15',
+    'Catalyst::Plugin::SubRequest'                 => '0.19',
     'Catalyst::Plugin::Session::State::Cookie'     => 0.11,
     'Catalyst::Plugin::Session::Store::Cache'      => '0',
     'Catalyst::Plugin::Setenv'                     => 0,
