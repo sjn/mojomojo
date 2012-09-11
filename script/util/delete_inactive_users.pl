@@ -37,7 +37,8 @@ my $users_deleted = 0;
 
 $users = MojoMojo->model('DBIC::Person')->search(
     {   active => {'!=' => 1},
-        'page_versions.creator' => undef  # IS NULL
+        'page_versions.creator' => undef,  # IS NULL
+        id => {'!=' => 1},    # Keep Anonymous Coward
     },
     {join => 'page_versions'}
 );
@@ -55,7 +56,8 @@ if ($users_count > 0) {
 $users = MojoMojo->model('DBIC::Person')->search(
     {
         active => 0,
-        'page_versions.creator' => \'IS NOT NULL'  # necessary because this is a LEFT JOIN
+        'page_versions.creator' => \'IS NOT NULL',  # necessary because this is a LEFT JOIN
+        id => {'!=' => 1},    # Keep Anonymous Coward
     },    
     {join => 'page_versions'}
 );

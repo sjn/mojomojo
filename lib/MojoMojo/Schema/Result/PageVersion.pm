@@ -100,6 +100,9 @@ __PACKAGE__->has_many(
         "foreign.parent"         => "self.page",
         "foreign.parent_version" => "self.version",
     },
+    {
+        cascade_delete => 0
+    },
 );
 
 =head1 METHODS
